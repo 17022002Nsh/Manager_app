@@ -1,8 +1,35 @@
 from django.db.models import Q
-from .models import Board, Column, Task
+from .models import Board, BoardMember, Column, Task
 from .serializer import BoardDataSerializer, BoardSerializer,  ColumnSerializer, MemberSerializer, TaskSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView, CreateAPIView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+
+class Tasdiqlash_Verify(APIView):
+    def post(self, request):
+        data = request.data 
+        code = data.get("code")
+        token = data.get("token")
+        if not token or not code :
+            return Response({
+                "error" : "Token or code not given"
+            })
+        board_member = BoardMember.objects.filter(is_activ=False, token=token, code=code).first()
+        if board_member:
+            board_member.is_activ = True
+            board_member.save()
+            return Response({
+                "status" : True
+            })
+        return Response({
+            "status" : False
+        })
+            
+            
+
+
 
 
 

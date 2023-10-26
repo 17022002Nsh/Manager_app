@@ -9,6 +9,7 @@ from .views import (
     TaskUpdatedAPi,
     GetBoardDataAPi,
     BoardMemberAPi,
+    Tasdiqlash_Verify
    
 )
 
@@ -22,5 +23,6 @@ urlpatterns = [
     path('task/detail/<int:pk>/', TaskUpdatedAPi.as_view()),
     path('board_data/', GetBoardDataAPi.as_view()),
     path('board_member/', BoardMemberAPi.as_view()),
+    path('tasdiqlash/', Tasdiqlash_Verify.as_view()),
     
 ]
