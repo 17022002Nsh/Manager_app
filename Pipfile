@@ -7,6 +7,11 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
+<<<<<<< HEAD
+=======
+python-dotenv = "*"
+pillow = "*"
+>>>>>>> d51e158 (..)
 
 [dev-packages]
 
